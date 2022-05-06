@@ -7,6 +7,11 @@
   margin: auto;
   margin-top: 40px;
 
+  @include tabletScreen {
+    width: 100%;
+    padding: 0 16px;
+  }
+
   &__logo {
     height: 100px;
     object-fit: contain;
@@ -27,13 +32,5 @@
     position: fixed;
     top: 0;
     left: 0;
-  }
-
-  &__forgotpassword-text {
-    margin-top: 20px;
-    font-size: 14px;
-    color: $link;
-    text-align: center;
-    cursor: pointer;
   }
 }
