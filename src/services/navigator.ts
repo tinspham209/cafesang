@@ -19,7 +19,7 @@ const replace = (routeName: string, state?) => {
 
 const goBack = (backup = PATHS.home) => {
   var isCannotBack = _history.action === 'POP';
-  isCannotBack ? _history.push(backup) : _history.back();
+  isCannotBack ? _history.push(backup) : _history.goBack();
 };
 
 const getNextPathInBaseUrl = (nextPath?: string) => {

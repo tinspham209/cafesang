@@ -32,7 +32,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.16.0
         with:
-          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"You have a new request action: "}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Action:* Deploy to PROD"},{"type":"mrkdwn","text":"*Status:* FAILED!"},{"type":"mrkdwn","text":"*Project:* cafesang"}, {"type":"mrkdwn","text":"*Domain:* https://cafe-sang.web.app"}, {"type":"mrkdwn","text": <@U018TVC37FS>}]}]}'
+          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"You have a new request action: "}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Action:* Deploy to PROD"},{"type":"mrkdwn","text":"*Status:* FAILED!"},{"type":"mrkdwn","text":"*Project:* cafesang"}, {"type":"mrkdwn","text":"*Domain:* https://cafe-sang.web.app"}, {"type":"mrkdwn","text": "<@U018TVC37FS>"}]}]}'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
