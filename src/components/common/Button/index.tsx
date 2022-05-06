@@ -1,10 +1,9 @@
+import cn from 'classnames';
 import React, { useRef } from 'react';
 import { connect } from 'react-redux';
-import cn from 'classnames';
-
-import './styles.scss';
 import { Loading } from 'src/components/common';
 import { IRootState } from 'src/redux/rootReducer';
+import './styles.scss';
 
 const Button: React.FC<ButtonProps> = ({
   label,
@@ -16,8 +15,10 @@ const Button: React.FC<ButtonProps> = ({
   isFull,
   isLoading,
   type,
-  variant = 'secondary',
+  variant = 'primary',
   onClick = event => {},
+  labelSize,
+  size,
   ...props
 }) => {
   const btnRef = useRef<HTMLButtonElement>(null);
@@ -46,6 +47,7 @@ const Button: React.FC<ButtonProps> = ({
         'cmp-button--full-width': isFull,
         'cmp-button--is-loading': isLoading,
         [`cmp-button__icon--${iconPosition}`]: isRenderIcon,
+        'cmp-button--small': size === 'small',
       })}
       type={type}
       disabled={isDisabled}
@@ -58,7 +60,9 @@ const Button: React.FC<ButtonProps> = ({
         loadingStyle={5}
         className="cmp-button__loading"
       />
-      <span className="cmp-button__label">{label || children}</span>
+      <span className={`cmp-button__label text-is-${labelSize ? labelSize : size === 'small' ? '12' : '16'}`}>
+        {label || children}
+      </span>
     </button>
   );
 };
@@ -88,6 +92,8 @@ export type ButtonProps = ReturnType<typeof mapStateToProps> &
     isFull?: boolean;
     isLoading?: boolean;
     variant?: ButtonVariant;
+    labelSize?: number;
+    size?: 'small' | 'medium' | 'large';
   };
 
 const mapStateToProps = (state: IRootState) => ({});

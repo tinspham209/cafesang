@@ -1,12 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Button, Grid, IconButton, InputAdornment, TextField } from '@material-ui/core';
-import { Field, Formik, FormikProps } from 'formik';
+import { Formik, FormikProps } from 'formik';
 import { History } from 'history';
 import React, { useRef, useState } from 'react';
-import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { connect } from 'react-redux';
 import { IMAGES } from 'src/appConfig/images';
-import { Form, Image, Loading, Text } from 'src/components/common';
+import { Button, Form, Image, Text } from 'src/components/common';
+import MuiTextField from 'src/components/MuiTextField';
 import { signInAsync } from 'src/redux/authRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
 import { TokenService } from 'src/services';
@@ -29,7 +28,6 @@ const signInFormSchema = Yup.object().shape({
 
 const Signin: React.FC<Props> = ({ error, loading, isSigningIn, onSignIn }) => {
   const formRef = useRef<FormikProps<FormValue>>(null);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
 
   React.useEffect(() => {
@@ -64,75 +62,38 @@ const Signin: React.FC<Props> = ({ error, loading, isSigningIn, onSignIn }) => {
 
       <div className="ctn-uam__body">
         <Formik initialValues={INTIAL} onSubmit={handleLogin} validationSchema={signInFormSchema} innerRef={formRef}>
-          {({ dirty, touched, isValid, handleSubmit }) => (
-            <Grid
-              container
-              spacing={3}
-              component={Form}
-              onSubmit={handleSubmit}
-              autoComplete="off"
-              className="ctn-uam__form">
-              <Grid item xs={12}>
-                <Field name="email">
-                  {({ field, meta }) => (
-                    <TextField
-                      label="Email"
-                      variant="outlined"
-                      error={meta.touched && meta.error ? true : false}
-                      helperText={(meta.touched && meta.error) || ''}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                </Field>
-              </Grid>
+          {({ dirty, values, errors, getFieldProps, touched, isValid, handleSubmit }) => (
+            <Form onSubmit={handleSubmit} autoComplete="off" className="ctn-uam__form">
+              <MuiTextField
+                label={`User Email / Window Email`}
+                errorMessage={touched.email && errors.email ? errors.email : ' '}
+                placeholder="Enter your email"
+                className="mb-24"
+                {...getFieldProps('email')}
+              />
+              <MuiTextField
+                label="Password"
+                placeholder="Enter your password"
+                errorMessage={touched.password && errors.password ? errors.password : ' '}
+                className="mb-8"
+                isPassword
+                {...getFieldProps('password')}
+              />
 
-              <Grid item xs={12}>
-                <Field name="password">
-                  {({ field, meta }) => (
-                    <TextField
-                      label="Password"
-                      variant="outlined"
-                      type={showPassword ? 'text' : 'password'}
-                      error={meta.touched && meta.error ? true : false}
-                      helperText={(meta.touched && meta.error) || ''}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <IconButton
-                              aria-label="toggle password visibility"
-                              onClick={() => setShowPassword(prevState => !prevState)}
-                              edge="end">
-                              {showPassword ? <AiFillEyeInvisible /> : <AiFillEye />}
-                            </IconButton>
-                          </InputAdornment>
-                        ),
-                      }}
-                      fullWidth
-                      {...field}
-                    />
-                  )}
-                </Field>
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  size="large"
-                  disabled={loading || isSigningIn}
-                  endIcon={loading ? <Loading size="small" loadingStyle={5} className="cmp-button__loading" /> : null}
-                  fullWidth>
-                  Login
-                </Button>
-              </Grid>
+              <Button
+                type="button"
+                variant="link"
+                className="ctn-uam__link mb-24 fw-normal"
+                onClick={() => {
+                  setShowForgotPassword(true);
+                }}>
+                {'Forgot your password?'}
+              </Button>
 
-              <Grid item xs={12}>
-                <Text size={14} onClick={() => setShowForgotPassword(true)} className="ctn-uam__forgotpassword-text">
-                  Forgot Password?
-                </Text>
-              </Grid>
-            </Grid>
+              <Button type="submit" isLoading={loading || isSigningIn}>
+                LOG IN
+              </Button>
+            </Form>
           )}
         </Formik>
       </div>
