@@ -1,0 +1,144 @@
+@use './vars' as *;
+@use './mixin' as *;
+@import 'react-datepicker/dist/react-datepicker';
+
+// React datepicker
+.react-datepicker .react-datepicker__header {
+  background-color: $color-primary;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+  color: $color-white;
+  overflow: hidden;
+  border: none;
+
+  .react-datepicker__current-month,
+  .react-datepicker-time__header,
+  .react-datepicker-year-header,
+  .react-datepicker__day-name {
+    color: $color-white;
+  }
+}
+
+.react-datepicker__header--time {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0;
+}
+
+.react-datepicker__time-container {
+  border-bottom-right-radius: 0;
+  overflow: hidden;
+}
+
+.react-datepicker {
+  font-family: $font-primary;
+  border-radius: 0px;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__day--in-range,
+.react-datepicker__month-text--selected,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__month-text--in-range,
+.react-datepicker__quarter-text--selected,
+.react-datepicker__quarter-text--in-selecting-range,
+.react-datepicker__quarter-text--in-range {
+  background-color: $color-primary;
+  outline: none;
+
+  &:active,
+  &:focus {
+    background-color: $color-primary;
+    outline: none;
+  }
+}
+
+.react-datepicker__day--in-selecting-range,
+.react-datepicker__month-text--in-selecting-range,
+.react-datepicker__quarter-text--in-selecting-range {
+  opacity: 0.7;
+}
+
+.react-datepicker__time-container {
+  border: none;
+}
+.react-datepicker__time-container
+  .react-datepicker__time
+  .react-datepicker__time-box
+  ul.react-datepicker__time-list
+  li.react-datepicker__time-list-item--selected {
+  background-color: $color-primary;
+}
+
+.react-datepicker__navigation {
+  top: 8px;
+  // border: 0.45rem solid transparent !important;
+}
+
+.react-datepicker-wrapper {
+  display: block;
+  width: 100%;
+
+  .react-datepicker__input-container {
+    display: block;
+    width: 100%;
+    position: relative;
+
+    input {
+      width: 100%;
+      height: $input-normal;
+      border-width: 1px !important;
+      border-style: solid !important;
+      border-color: $color-border !important;
+
+      border-radius: $input-boder-radius;
+      border: none;
+      background: $color-white;
+      padding: $input-padding;
+      outline: none;
+
+      font-size: $body-size;
+
+      @include focus {
+        box-shadow: $focus-shadow;
+      }
+
+      @include disabled {
+        background-color: $color-border;
+        color: $text;
+      }
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: calc(50% - 8px);
+      right: 16px;
+      width: 16px;
+      height: 16px;
+      background: url('~src/assets/images/icons/ic_calendar.png') no-repeat;
+      background-size: contain;
+    }
+  }
+
+  .react-datepicker__close-icon {
+    right: 36px;
+
+    &::after {
+      background-color: #fff;
+      font-size: 20px;
+      color: $color-text-inactive;
+    }
+  }
+}
+
+.cmp-select-checkin-date {
+  .react-datepicker-wrapper {
+    input {
+      border-width: 0 !important;
+      font-size: 14px;
+      box-shadow: none !important;
+    }
+  }
+}

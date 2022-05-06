@@ -1,0 +1,10 @@
+@use 'src/scss/vars' as *;
+@use 'src/scss/mixin' as *;
+
+.actions-menu-item {
+  padding: 16px !important;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-border;
+  }
+}

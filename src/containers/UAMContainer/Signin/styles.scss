@@ -1,0 +1,39 @@
+@use 'src/scss/vars' as *;
+@use 'src/scss/mixin' as *;
+
+.ctn-uam {
+  text-align: center;
+  width: 560px;
+  margin: auto;
+  margin-top: 40px;
+
+  &__logo {
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 20px;
+  }
+
+  &__link {
+    font-size: 14px;
+    margin-left: auto;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__background {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
+  &__forgotpassword-text {
+    margin-top: 20px;
+    font-size: 14px;
+    color: $link;
+    text-align: center;
+    cursor: pointer;
+  }
+}

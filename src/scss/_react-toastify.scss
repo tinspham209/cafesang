@@ -1,0 +1,44 @@
+@use './mixin' as *;
+@use './vars' as *;
+
+.Toastify__toast {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25) !important;
+  border-radius: 16px !important;
+  font-weight: normal;
+  font-family: $font-primary;
+  backdrop-filter: blur(10px);
+  padding: 16px !important;
+
+  &-container {
+    top: calc(75px) !important;
+  }
+  &-body {
+    color: $color-white !important;
+
+    & svg {
+      fill: $color-white !important;
+    }
+  }
+}
+.Toastify__toast--success {
+  background: #3dbc59 !important;
+}
+.Toastify__toast--info {
+  background: #1466c8 !important;
+}
+.Toastify__toast--warning {
+  background: #ef5d0b !important;
+}
+.Toastify__toast--error {
+  background: #ee2d2d !important;
+}
+
+.Toastify {
+  &__progress-bar {
+    background-color: $color-white !important;
+  }
+  &__close-button {
+    color: $color-white !important;
+    opacity: 1 !important;
+  }
+}

@@ -1,0 +1,10 @@
+@use 'src/scss/vars' as *;
+@use 'src/scss/mixin' as *;
+
+.ctn-home {
+  &__background {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}

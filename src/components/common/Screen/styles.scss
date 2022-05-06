@@ -1,0 +1,17 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+
+.cmp-screen {
+  position: relative;
+  padding-top: $navbar-height;
+  min-height: calc(100vh - #{$navbar-height});
+  transition: 0.6s;
+
+  &__sidebar:not(.is-collapse) {
+    padding-left: $sidebar-width;
+  }
+
+  &__sidebar.is-collapse {
+    padding-left: $sidebar-mini-width;
+  }
+}

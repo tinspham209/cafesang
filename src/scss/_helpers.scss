@@ -1,0 +1,355 @@
+@use './mixin' as *;
+@use './vars' as *;
+
+// Helper mixins
+@mixin text($position) {
+  .text-#{$position} {
+    text-align: $position;
+  }
+}
+
+$sizes: 8, 12, 16, 20, 24, 28, 32, 36, 40, 48, 56, 64, 72, 80, 100, 120;
+
+@each $size in $sizes {
+  @include spacing-helper($size, 1px);
+}
+
+// text position
+$positions: center, right, left;
+
+@each $position in $positions {
+  @include text($position);
+}
+
+// flex display
+.flex-center {
+  display: flex !important;
+  align-items: center !important;
+}
+
+$justifies: center, space-between, space-around, space-evenly, flex-start, flex-end;
+
+@each $justify in $justifies {
+  .justify-#{$justify} {
+    @extend .flex-center;
+    justify-content: $justify !important;
+  }
+}
+
+// Font size
+$fontFizes: 12, 14, 16, 18, 20, 22, 24, 32, 36, 40, 56;
+
+@each $size in $fontFizes {
+  .text-is-#{$size} {
+    font-size: #{$size}px;
+  }
+}
+
+// font weight
+.fw-normal {
+  font-weight: $font-weight-regular;
+}
+
+.fw-medium {
+  font-weight: $font-weight-medium;
+}
+
+.fw-bold {
+  font-weight: $font-weight-bold;
+}
+
+.fs-italic {
+  font-style: italic;
+}
+
+// Text align
+$textAligns: center, left, right;
+
+@each $align in $textAligns {
+  .text-align-#{$align} {
+    text-align: #{$align};
+  }
+}
+
+@media (min-width: $tablet) {
+  .modal .modal-content {
+    width: auto;
+  }
+}
+.modal .modal-content {
+  @include mobileScreen {
+    margin-left: 9px;
+  }
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-height {
+  height: 100%;
+}
+
+.hide-on-mobile {
+  @include mobileScreen {
+    display: none;
+  }
+}
+
+.hide-on-desktop {
+  display: none;
+  @include mobileScreen {
+    display: block;
+  }
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.pre-wrap {
+  white-space: pre-wrap;
+}
+
+.has-text-secondary {
+  color: $color-secondary;
+}
+
+.is-full-width {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+}
+
+.columns > .column {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.columns:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.is-status-active {
+  color: $color-green;
+}
+
+.is-status-rejected {
+  color: $color-red;
+}
+
+.is-status-pending {
+  color: $color-warning;
+}
+
+.is-status-reviewing {
+  color: $color-warning;
+}
+
+.is-status-setting {
+  color: $color-primary;
+}
+.is-status-submitted {
+  color: $color-black-300;
+}
+.form-section {
+  background-color: $color-white;
+  border-radius: 24px;
+  padding: 32px;
+
+  @include mobileScreen {
+    border-radius: 12px;
+    padding: 16px 16px 32px;
+  }
+}
+
+html {
+  .has-text-primary {
+    color: $color-primary !important;
+  }
+  .has-text-success {
+    color: $color-success !important;
+  }
+  .has-text-danger {
+    color: $color-danger !important;
+  }
+  .has-text-warning {
+    color: $color-warning !important;
+  }
+  .has-text-gray {
+    color: $color-text-gray;
+  }
+  .has-text-disable {
+    color: $color-text-gray;
+    text-decoration: line-through;
+  }
+  .has-text-black {
+    color: $color-text;
+  }
+}
+
+.secondary-container {
+  max-width: $secondary-container-width;
+  width: 100%;
+  margin: auto;
+}
+
+.bigger-form-container {
+  max-width: $form-width-bigger;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medium-form-container {
+  max-width: $form-width-medium;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.form-container {
+  max-width: $form-width;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c-container {
+  width: 100%;
+  max-width: 95%;
+  margin: 0 auto;
+}
+
+.is-sticky-top {
+  align-self: baseline;
+  position: sticky;
+  top: calc(#{$navbar-height} + 8px);
+}
+
+.section {
+  &__container {
+    background: $color-white;
+    border-radius: 8px;
+    padding: 16px 32px 32px;
+    box-shadow: 0px 2px 6px rgba(116, 116, 116, 0.25);
+  }
+
+  &__container-disabled {
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-color: $color-white;
+      opacity: 0.5;
+    }
+  }
+  &__sub-container {
+    background: $color-white;
+    border-radius: 8px;
+    padding: 16px;
+  }
+
+  &__title {
+    font-weight: bold;
+    font-size: 24px;
+  }
+}
+
+.table-icon {
+  color: $color-text-gray;
+
+  @include hover {
+    color: $color-primary;
+  }
+
+  &--danger {
+    @include hover {
+      color: $color-danger;
+    }
+  }
+}
+
+// $colorBlacks: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+// @each $size in $colorBlacks {
+
+// }
+.text-color-black-50 {
+  color: $color-black-50;
+}
+.text-color-black-100 {
+  color: $color-black-100;
+}
+.text-color-black-200 {
+  color: $color-black-200;
+}
+.text-color-black-300 {
+  color: $color-black-300;
+}
+.text-color-black-400 {
+  color: $color-black-400;
+}
+.text-color-black-500 {
+  color: $color-black-500;
+}
+.text-color-black-500 {
+  color: $color-black-500;
+}
+.text-color-black-600 {
+  color: $color-black-600;
+}
+.text-color-black-700 {
+  color: $color-black-700;
+}
+.text-color-black-800 {
+  color: $color-black-800;
+}
+.text-color-black-900 {
+  color: $color-black-900;
+}
+
+.text-color-gray-50 {
+  color: $color-gray-50;
+}
+.text-color-gray-100 {
+  color: $color-gray-100;
+}
+.text-color-gray-200 {
+  color: $color-gray-200;
+}
+.text-color-gray-300 {
+  color: $color-gray-300;
+}
+.text-color-gray-400 {
+  color: $color-gray-400;
+}
+.text-color-gray-500 {
+  color: $color-gray-500;
+}
+.text-color-gray-500 {
+  color: $color-gray-500;
+}
+.text-color-gray-600 {
+  color: $color-gray-600;
+}
+.text-color-gray-700 {
+  color: $color-gray-700;
+}
+.text-color-gray-800 {
+  color: $color-gray-800;
+}
+.text-color-gray-900 {
+  color: $color-gray-900;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.cursor-not-allowed {
+  cursor: not-allowed;
+}

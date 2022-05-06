@@ -1,0 +1,21 @@
+.cmp-head {
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  &-extras {
+    display: flex;
+    & > *:not(:last-child) {
+      margin-right: 0.75rem;
+    }
+    
+    &-date-picker {
+      width: 10rem;
+    }
+    &-export-button {
+      width: 7rem;
+    }
+  }
+}

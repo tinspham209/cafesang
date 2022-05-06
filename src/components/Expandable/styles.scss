@@ -1,0 +1,96 @@
+@use 'src/scss/vars' as *;
+@use 'src/scss/mixin' as *;
+
+.cmp-expandable {
+  margin-bottom: 8px;
+
+  &--primary > .cmp-expandable__header {
+    background-color: #51a0b8;
+  }
+
+  &--danger > .cmp-expandable__header {
+    background-color: #e76f6f;
+  }
+
+  &--warning > .cmp-expandable__header {
+    background-color: #ebc34d;
+  }
+
+  &--secondary > .cmp-expandable__header {
+    background-color: #53e43d;
+  }
+
+  &--no-border &__header {
+    border: none;
+    border-radius: 16px 16px 0 0;
+  }
+  &--no-border &__body {
+    border: none;
+    border-radius: 0 0 16px 16px;
+  }
+
+  &--no-padding &__header {
+    padding: 0;
+  }
+
+  &--no-padding &__body {
+    padding: 0;
+  }
+
+  &__header,
+  &__body {
+    border: $default-border;
+    padding: 12px 16px;
+    background-color: $color-white;
+    text-align: left;
+  }
+
+  &__header {
+    @include hover;
+  }
+
+  &__body {
+    margin-top: -1px;
+    white-space: pre-wrap;
+  }
+
+  &__label {
+    font: {
+      weight: $font-weight-bold;
+    }
+
+    padding-right: 24px;
+  }
+
+  &__arrow {
+    position: relative;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: 2px;
+      height: 6px;
+      background-color: $color-text-gray;
+      transform: translate(0, -50%) skewX(-45deg);
+      transition: $default-transition;
+    }
+
+    &::after {
+      transform: translate(-6px, -50%) skewX(45deg);
+    }
+
+    &--up {
+      &::before {
+        transform: translate(-6px, -50%) skewX(-45deg);
+      }
+
+      &::after {
+        transform: translate(0, -50%) skewX(45deg);
+      }
+    }
+  }
+}

@@ -1,0 +1,132 @@
+@use './vars' as *;
+
+@mixin hover {
+  &:not([disabled]):hover {
+    cursor: pointer;
+    @content;
+  }
+}
+
+@mixin active {
+  &:not([disabled]):active {
+    @content;
+  }
+}
+
+@mixin focus {
+  &:not([disabled]):focus {
+    @content;
+  }
+}
+
+@mixin disabled {
+  &:disabled {
+    cursor: not-allowed;
+    @content;
+  }
+}
+
+// Mixin helpers
+@mixin margin-helper($index, $unit) {
+  .mt-#{$index} {
+    margin-top: $index * $unit !important;
+  }
+
+  .mb-#{$index} {
+    margin-bottom: $index * $unit !important;
+  }
+  .ml-#{$index} {
+    margin-left: $index * $unit !important;
+  }
+
+  .mr-#{$index} {
+    margin-right: $index * $unit !important;
+  }
+
+  .mx-#{$index} {
+    margin-left: $index * $unit !important;
+    margin-right: $index * $unit !important;
+  }
+
+  .my-#{$index} {
+    margin-top: $index * $unit !important;
+    margin-bottom: $index * $unit !important;
+  }
+}
+
+@mixin padding-helper($index, $unit) {
+  .pt-#{$index} {
+    padding-top: $index * $unit !important;
+  }
+
+  .pb-#{$index} {
+    padding-bottom: $index * $unit !important;
+  }
+  .pl-#{$index} {
+    padding-left: $index * $unit !important;
+  }
+
+  .pr-#{$index} {
+    padding-right: $index * $unit !important;
+  }
+
+  .px-#{$index} {
+    padding-left: $index * $unit !important;
+    padding-right: $index * $unit !important;
+  }
+
+  .py-#{$index} {
+    padding-top: $index * $unit !important;
+    padding-bottom: $index * $unit !important;
+  }
+}
+
+@mixin spacing-helper($index, $unit) {
+  @include margin-helper($index, $unit);
+  @include padding-helper($index, $unit);
+}
+
+// reponsive
+@mixin widescreen {
+  @media (max-width: $widescreen) {
+    @content;
+  }
+}
+
+@mixin desktopScreen {
+  @media (max-width: $desktop) {
+    @content;
+  }
+}
+
+@mixin tabletScreen {
+  @media (max-width: $tablet) {
+    @content;
+  }
+}
+
+@mixin mobileScreen {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin absoluteTopLeft {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@mixin absoluteCenter {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin borderColor($color: $color-border) {
+  border-top-color: $color;
+  border-bottom-color: $color;
+  border-left-color: $color;
+  border-right-color: $color;
+}

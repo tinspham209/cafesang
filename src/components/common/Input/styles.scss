@@ -1,0 +1,38 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+
+.cmp-input {
+  height: $input-normal;
+  padding: $input-padding;
+  border: $default-border;
+  background-color: $color-white;
+  transition: $default-transition;
+  border-radius: $input-boder-radius;
+  font-size: $body-size;
+  &--icon {
+    padding-right: 36px;
+  }
+  &:focus {
+    box-shadow: $focus-shadow;
+  }
+
+  &--error {
+    border-color: $color-danger;
+    &:focus {
+      box-shadow: $error-shadow;
+    }
+  }
+
+  &:disabled {
+    background-color: $color-border;
+  }
+
+  &__icon {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+
+    @include hover;
+  }
+}

@@ -1,0 +1,61 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+.cmp-input-image-file {
+  .cmp-input-image-file {
+    &__input {
+      display: none;
+    }
+    &__description {
+      color: $color-black-300;
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    &__button {
+      width: fit-content;
+      &.hasError {
+        border-color: $color-danger;
+      }
+    }
+    &__name {
+      font-size: 14px;
+      font-weight: 500;
+      color: $color-link;
+      margin-right: 36px;
+    }
+    &__image {
+      border-radius: 8px;
+      max-width: 100%;
+      max-height: 300px;
+    }
+    &__icon {
+      &--trash {
+        position: absolute;
+        top: 0;
+        right: 8px;
+        margin: 8px;
+        font-size: 24px;
+        color: $color-black-300;
+        background: #fff;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: $default-shadow;
+        @include hover {
+          box-shadow: $focus-shadow;
+        }
+      }
+    }
+  }
+  .jump-in {
+    animation: jump_in 0.2s;
+  }
+  @keyframes jump_in {
+    from {
+      opacity: 0;
+      transform: scale(0);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+}

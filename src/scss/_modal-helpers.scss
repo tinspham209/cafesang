@@ -1,0 +1,41 @@
+@use './mixin' as *;
+@use './vars' as *;
+
+$width-xxs: 1080px;
+$width-xs: 978px;
+$width-x-md: 840px;
+$width-md: 560px;
+$width-sm: 420px;
+
+.modal {
+  &__full-width {
+    &--xxs {
+      width: $width-xxs;
+    }
+    &--xs {
+      width: $width-xs;
+    }
+    &--x-md {
+      width: $width-x-md;
+    }
+    &--md {
+      width: $width-md;
+    }
+    &--sm {
+      width: $width-sm;
+    }
+  }
+}
+
+.modal {
+  &__full-width-height {
+    &--xs {
+      width: $width-xs;
+      height: 100%;
+    }
+    &--md {
+      width: $width-md;
+      height: 100%;
+    }
+  }
+}

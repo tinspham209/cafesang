@@ -1,0 +1,38 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+
+.cmp-input-color {
+  .cmp-input-color {
+    &__description {
+      margin-top: 0;
+      margin-bottom: 8px;
+      color: $color-black-300;
+    }
+    &__modal {
+      & > div.cmp-modal__content {
+        padding: 0;
+        padding-bottom: 24px;
+      }
+    }
+    &__input {
+      max-width: 60%;
+    }
+    &__picker-button {
+      max-width: 40px;
+      max-height: 40px;
+      padding: 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: $default-shadow;
+      &--placeholder {
+        padding: 0;
+      }
+    }
+  }
+
+  .sketch-picker {
+    box-shadow: none !important;
+    border-radius: 0 imo !important;
+    border: 1px solid rgb(238, 238, 238);
+  }
+}

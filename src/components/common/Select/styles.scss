@@ -1,0 +1,88 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+
+.cmp-select {
+  text-align: left;
+
+  .cmp-select {
+    &__control {
+      height: $input-normal;
+      // padding: $input-padding;
+      border: $default-border;
+      background-color: $color-white;
+      transition: $default-transition;
+      border-radius: $input-boder-radius;
+      font-size: $body-size;
+
+      &--is-disabled {
+        background-color: $color-border;
+      }
+
+      &:hover {
+        border-color: $color-border;
+      }
+
+      &--is-focused {
+        border-color: $color-border;
+        box-shadow: $focus-shadow;
+      }
+    }
+
+    &__placeholder {
+      color: #a3a3a3;
+    }
+
+    &__value-container {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+
+    &__indicator-separator {
+      // display: none;
+    }
+
+    &__placeholder,
+    &__single-value {
+      border-bottom: 0.5px solid $color-white;
+
+      &--is-disabled {
+        color: $color-black-500;
+      }
+    }
+
+    &__indicators {
+    }
+
+    &__menu {
+      border-radius: 0px;
+      z-index: 101;
+    }
+
+    &__menu-list {
+      max-height: 200px;
+    }
+
+    &__option {
+      font-size: 14px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+  }
+
+  &--error {
+    .cmp-select__control {
+      border-color: $color-danger;
+
+      &:hover {
+        border-color: $color-danger;
+      }
+
+      &--is-focused {
+        border-color: $color-danger;
+        box-shadow: $error-shadow;
+      }
+    }
+  }
+}

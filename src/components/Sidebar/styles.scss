@@ -1,0 +1,126 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+
+.pro-sidebar {
+  &-layout {
+    & .pro-menu {
+      width: 100%;
+
+      & .pro-menu-item.active {
+        color: $color-white !important;
+      }
+    }
+  }
+}
+
+.cmp-sidebar {
+  &.pro-sidebar {
+    z-index: 120;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: $sidebar-width;
+    transition: 0.4s;
+    animation: jumpRight 0.6s;
+    box-shadow: 0px 4px 6px rgba(167, 167, 167, 0.25);
+    font-size: 18px;
+    font-weight: 500;
+
+    & .cmp-sidebar__subMenu {
+      & .pro-inner-list-item {
+        padding-left: 0px !important;
+        & ul {
+          padding-top: 0 !important;
+          padding-bottom: 0 !important;
+          & li {
+            // padding-top: 8px;
+            // padding-bottom: 8px;
+            padding-left: 24px;
+            font-size: 18px;
+            & .pro-inner-item {
+              &::before {
+                display: none !important;
+              }
+            }
+            &.active {
+              background-color: $color-background-light;
+            }
+          }
+        }
+      }
+      .pro-icon-wrapper {
+        display: inline-block !important;
+      }
+
+      & .active {
+        background-color: $color-background-light;
+      }
+    }
+    &.collapsed {
+      & .popper-inner {
+        padding-left: 0 !important;
+        margin-left: 4px;
+      }
+    }
+    & li {
+      &.active {
+        background-color: $color-background-light;
+      }
+    }
+  }
+
+  &__header {
+    padding: 8px 16px;
+    text-align: center;
+
+    position: relative;
+  }
+
+  &__footer {
+    // position: absolute;
+    // bottom: -18px;
+    // right: -18px;
+
+    background-color: $color-white;
+    padding: 8px;
+
+    text-align: left;
+    font-size: 12px;
+    cursor: pointer;
+
+    &-icon {
+      width: 34px;
+      height: 34px;
+      box-shadow: 1px 2px 4px rgba(137, 137, 137, 0.25);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include hover {
+        // filter: brightness(130%);
+        color: $color-primary;
+      }
+    }
+  }
+
+  &__image {
+    object-fit: contain;
+    &--header {
+      max-width: 100%;
+      max-height: 50px;
+    }
+    &--footer {
+      height: 40px;
+    }
+  }
+
+  @keyframes jumpRight {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: none;
+    }
+  }
+}

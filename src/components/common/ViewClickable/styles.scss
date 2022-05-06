@@ -1,0 +1,11 @@
+@use '~src/scss/vars' as *;
+@use '~src/scss/mixin' as *;
+
+.cmp-view {
+  &__clickable:focus {
+    outline: none;
+  }
+  &__clickable {
+    @include hover;
+  }
+}

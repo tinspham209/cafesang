@@ -1,0 +1,21 @@
+@use '~src/scss/vars' as *;
+
+.cmp-dialog {
+  &-title {
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  &-close-icon {
+    position: absolute !important;
+    right: 5px;
+    top: 5px;
+  }
+
+  &-footer {
+    padding: 8px 24px 16px 24px !important;
+  }
+
+  &-content-visible {
+    overflow: visible !important;
+  }
+}
