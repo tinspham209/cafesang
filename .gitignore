@@ -23,3 +23,5 @@ debug.log
 .eslintcache
 
 .idea
+
+.firebase
