@@ -15,7 +15,7 @@ const initialState: ICommonState = {
   showNavbar: false,
   showSecondBurger: false,
   showSidebar: false,
-  collapseSidebar: true,
+  collapseSidebar: false,
 };
 
 export default createReducer(initialState)
