@@ -20,6 +20,7 @@ const DateSelector: React.FC<Props> = ({
   dateFormat = 'MM/dd/yyyy',
   mask = '99/99/9999',
   name,
+  isTextfieldStyle = false,
   onBlur = () => {},
   ...props
 }) => {
@@ -41,7 +42,8 @@ const DateSelector: React.FC<Props> = ({
       id={id.current}
       errorMessage={errorMessage}
       label={label}
-      className={cn('cmp-datepicker', containerClassName)}>
+      className={cn('cmp-datepicker', containerClassName)}
+      isTextfieldStyle={isTextfieldStyle}>
       <DatePicker
         id={id.current}
         onChange={handleChange}
@@ -71,6 +73,7 @@ type Props = ReturnType<typeof mapStateToProps> &
     onChange: Callback;
     onBlur?: Callback;
     dateFormat?: string;
+    isTextfieldStyle?: boolean;
   };
 
 const mapStateToProps = (state: IRootState) => ({});

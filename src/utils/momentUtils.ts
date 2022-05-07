@@ -10,6 +10,10 @@ export const TimeFormat = 'HH:mm';
 export const TimeFormat12 = 'hh:mm A';
 export const HST_TIMEZONE = 'US/Hawaii';
 
+export const hourDateFormat = 'h:mm:ss a, MMMM DD, YYYY';
+export const monthFormat = 'MMMM DD, YYYY';
+export const DateTimeFormat = 'MMMM d, yyyy h:mm aa';
+
 /**
  * Get date display
  * @param {string|date|moment} value

@@ -18,7 +18,8 @@ import { IMAGES } from 'src/appConfig/images';
 import { PATHS } from 'src/appConfig/paths';
 import { signOutAsync } from 'src/redux/authRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
-import { Image, Text, View } from '../common';
+import navigator from 'src/services/navigator';
+import { Button, Image, Text, View } from '../common';
 import './styles.scss';
 
 const Navbar: React.FC<Props> = ({ showNavbar, collapseSidebar, onSignOut, user, isAuthenticated }) => {
@@ -64,6 +65,9 @@ const Navbar: React.FC<Props> = ({ showNavbar, collapseSidebar, onSignOut, user,
         </Link>
         <View renderIf={true} id="navigation-menu" className={cn('')}>
           <View isRow className={cn('navbar-end cmp-navbar__end')}>
+            <View className={`cmp-navbar__end--item cursor-pointer`} renderIf={!isAuthenticated}>
+              <Button onClick={() => navigator.navigate(PATHS.signIn)}>Login</Button>
+            </View>
             <View
               className={`cmp-navbar__end--item cursor-pointer`}
               onClick={(event: React.MouseEvent<HTMLElement>) => setAnchorEl(event.currentTarget)}
@@ -77,16 +81,7 @@ const Navbar: React.FC<Props> = ({ showNavbar, collapseSidebar, onSignOut, user,
                     borderLeft: '2px solid #B7B9B8',
                     paddingLeft: '12px',
                   }}>
-                  <Avatar
-                    className="cmp-navbar__end--item--avatar"
-                    // {...(authUser?.profile
-                    //   ? {
-                    //       src: authUser?.profile?.avatar,
-                    //     }
-                    //   : undefined)}
-                  >
-                    {getAvatarName()}
-                  </Avatar>
+                  <Avatar className="cmp-navbar__end--item--avatar">{getAvatarName()}</Avatar>
                 </ListItemAvatar>
                 {!isSmallScreen && (
                   <ListItemText

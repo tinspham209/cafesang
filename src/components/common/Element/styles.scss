@@ -5,6 +5,22 @@
   width: 100%;
   text-align: left;
 
+  &.text-field-style {
+    position: relative;
+
+    & label {
+      position: absolute;
+      top: -10px;
+      left: 8px;
+      z-index: 1;
+      background-color: $color-white;
+      color: #757575;
+      padding: 0 4px 0 4px;
+      font-size: 12px;
+      font-weight: $font-weight-regular;
+    }
+  }
+
   label {
     margin-bottom: 4px;
   }

@@ -38,7 +38,7 @@ function* signIn(apiInstance, { payload: params }: ReturnType<typeof signInAsync
       UserService.setLocalUser(authData);
       TokenService.setToken(token);
       yield put(signInAsync.success(authData));
-      Toastify.success('Đăng nhập thành công');
+      Toastify.success('Login successfully');
       Navigator.navigate(PATHS.home);
     } else {
       yield put(signInAsync.failure(new Error(SOMETHING_WENT_WRONG)));

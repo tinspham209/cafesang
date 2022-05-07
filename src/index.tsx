@@ -1,8 +1,10 @@
+import { MuiThemeProvider } from '@material-ui/core';
 import { ConnectedRouter } from 'connected-react-router';
 import 'react-awesome-lightbox/build/style.css';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { theme } from './appConfig/muiTheme';
 import MainAppNavigator from './containers';
 import createStore from './redux/store';
 import './scss/styles.scss';
@@ -10,11 +12,13 @@ const { store, history } = createStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <Router>
-        <Route component={MainAppNavigator} />
-      </Router>
-    </ConnectedRouter>
+    <MuiThemeProvider theme={theme}>
+      <ConnectedRouter history={history}>
+        <Router>
+          <Route component={MainAppNavigator} />
+        </Router>
+      </ConnectedRouter>
+    </MuiThemeProvider>
   </Provider>,
   document.getElementById('root'),
 );

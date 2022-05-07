@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { AiOutlinePieChart } from 'react-icons/ai';
-import { FaHome, FaUsersCog } from 'react-icons/fa';
+import { FaHome } from 'react-icons/fa';
 import { PATHS } from './paths';
 
 export const isActive = (href: string, exact?: boolean) => {
@@ -20,9 +20,14 @@ export type MenuType = {
 export const SidebarMenu: MenuType[] = [
   { title: 'Dashboard', icon: <FaHome />, href: PATHS.home },
   {
-    title: 'Orders Management',
+    title: 'Courses Management',
     icon: <AiOutlinePieChart />,
-    href: PATHS.orders,
+    href: PATHS.courses,
   },
-  { title: 'User Management', icon: <FaUsersCog />, href: PATHS.users },
+  // {
+  //   title: 'Orders Management',
+  //   icon: <AiOutlinePieChart />,
+  //   href: PATHS.orders,
+  // },
+  // { title: 'User Management', icon: <FaUsersCog />, href: PATHS.users },
 ];

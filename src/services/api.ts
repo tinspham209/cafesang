@@ -4,6 +4,7 @@ import appConfig from 'src/appConfig';
 import { DB_COLLECTION } from 'src/appConfig/fireStoreCollection';
 import { fireAuth, fireStore } from 'src/firebase';
 import { ChangePasswordPayload, SignInPayload, User } from 'src/redux/authRedux/types';
+import { Course, GetCourseDetailParam } from 'src/redux/coursesRedux/types';
 import { EditOrderPayload, GetOrderPayload, OrderDetail } from 'src/redux/ordersRedux/types';
 import { GetUserInfoPayload, UserInfo } from 'src/redux/userRedux/types';
 import { TokenService } from '.';
@@ -139,6 +140,60 @@ const create = (baseURL = appConfig.API_URL) => {
 
   // ====================== END Orders ======================
 
+  // ====================== Courses ======================
+  const getCourses = async () => {
+    try {
+      const dbUser = await fireStore.collection(DB_COLLECTION.COURSES).get();
+      const data = dbUser.docs.map((doc, index) => {
+        return {
+          ...doc.data(),
+        };
+      });
+      return data;
+    } catch (error) {
+      console.error('error: ', error);
+      return error;
+    }
+  };
+
+  const getCourse = async (params: GetCourseDetailParam) => {
+    const dbOrders = fireStore.collection(DB_COLLECTION.COURSES);
+    try {
+      const snapshot = await dbOrders.doc(params.uid).get();
+      const data = snapshot.data() as OrderDetail;
+      return data;
+    } catch (error) {
+      console.error('error: ', error);
+      return error;
+    }
+  };
+
+  const addCourse = async (params: Course) => {
+    const dbCourses = fireStore.collection(DB_COLLECTION.COURSES);
+    try {
+      if (params?.courseUrl) {
+        return await dbCourses.doc(params.courseUrl).set(params);
+      } else {
+        return await dbCourses.add(params);
+      }
+    } catch (error) {
+      console.error('error: ', error);
+      return error;
+    }
+  };
+
+  const editCourse = async (params: Course) => {
+    const dbCourses = fireStore.collection(DB_COLLECTION.COURSES);
+    try {
+      return await dbCourses.doc(params.courseUrl).update(params);
+    } catch (error) {
+      console.log('error: ', error);
+      return error;
+    }
+  };
+
+  // ====================== END Courses ======================
+
   //
   // Return back a collection of functions that we would consider our
   // interface.  Most of the time it'll be just the list of all the
@@ -166,6 +221,13 @@ const create = (baseURL = appConfig.API_URL) => {
     getOrder,
     editOrder,
     // ====================== END Orders ======================
+
+    // ====================== Courses ======================
+    getCourses,
+    getCourse,
+    addCourse,
+    editCourse,
+    // ====================== END Courses ======================
   };
 };
 

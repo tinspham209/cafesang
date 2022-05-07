@@ -6,6 +6,7 @@ import { parse } from 'qs';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
 import shortid from 'shortid';
 import appConfig from 'src/appConfig';
+import { ErrorService } from 'src/services';
 import { isEmpty } from 'src/validations';
 
 export function newCancelToken(timeout = appConfig.CONNECTION_TIMEOUT) {
@@ -247,11 +248,11 @@ export const getNameDisplay = (firstName: string, lastName: string): string => {
 export const getErrorMessageSignin = (msg: string) => {
   switch (msg) {
     case 'There is no user record corresponding to this identifier. The user may have been deleted.':
-      return 'Tên đăng nhập không tồn tại';
+      return ErrorService.MESSAGES.accountNotExist;
     case 'The email address is already in use by another account.':
       return 'Email đã được đăng ký. Vui lòng thay đổi email khác.';
     case 'The password is invalid or the user does not have a password.':
-      return 'Email hoặc Mật khẩu không đúng';
+      return ErrorService.MESSAGES.incorrectAccount;
     default:
       return msg;
   }

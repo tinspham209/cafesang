@@ -28,6 +28,7 @@ const MuiTextField: React.FC<InputProps> = ({
   minRows,
   maxRows,
   inputProps,
+  InputProps,
   iconPosition = 'end',
   onKeyDown,
   value,
@@ -64,6 +65,10 @@ const MuiTextField: React.FC<InputProps> = ({
       inputProps={inputProps}
       InputProps={{
         className: classes.input,
+        ...(!isEmpty(InputProps) && {
+          ...InputProps,
+        }),
+
         ...(iconPosition === 'end'
           ? {
               endAdornment: (
@@ -135,6 +140,7 @@ export type InputProps = ReturnType<typeof mapStateToProps> &
     value?: unknown;
     placeholder?: string;
     variant?: 'standard' | 'outlined' | 'filled';
+    InputProps?: any;
   };
 
 const mapStateToProps = (state: IRootState) => ({});

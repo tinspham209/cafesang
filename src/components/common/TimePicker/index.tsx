@@ -1,14 +1,13 @@
-import React, { useRef } from 'react';
-import { connect } from 'react-redux';
 import cn from 'classnames';
+import React, { useRef } from 'react';
 import DatePicker, { ReactDatePickerProps } from 'react-datepicker';
-
+import { connect } from 'react-redux';
 import { IRootState } from 'src/redux/rootReducer';
-import './styles.scss';
-import Element from '../Element';
+import { Callback } from 'src/redux/types';
 import { getRandomId } from 'src/utils';
 import { isEmpty } from 'src/validations';
-import { Callback } from 'src/redux/types';
+import Element from '../Element';
+import './styles.scss';
 
 const TimePicker: React.FC<Props> = ({
   label,
@@ -22,6 +21,7 @@ const TimePicker: React.FC<Props> = ({
   timeIntervals = 30,
   name,
   isInlineLabel = false,
+  isTextfieldStyle = false,
   ...props
 }) => {
   const id = useRef<string>(`datepicker-${getRandomId()}`);
@@ -39,7 +39,8 @@ const TimePicker: React.FC<Props> = ({
       errorMessage={errorMessage}
       label={label}
       className={cn('cmp-datepicker cmp-datepicker__time', containerClassName)}
-      isInlineLabel={isInlineLabel}>
+      isInlineLabel={isInlineLabel}
+      isTextfieldStyle={isTextfieldStyle}>
       <DatePicker
         id={id.current}
         onChange={handleChange}
@@ -69,6 +70,7 @@ type Props = ReturnType<typeof mapStateToProps> &
     label?: string;
     isInlineLabel?: boolean;
     onChange: Callback;
+    isTextfieldStyle?: boolean;
   };
 
 const mapStateToProps = (state: IRootState) => ({});

@@ -1,7 +1,7 @@
 import { TableParams } from 'src/redux/types';
 import { FireStoreTimeType } from './../../redux/ordersRedux/types';
 
-export type OrderQueryParams = TableParams;
+export type CoursesQueryParams = TableParams;
 
 export const formatFireStoreTime = (value: FireStoreTimeType) => {
   if (!value) return '--';

@@ -9,5 +9,6 @@ export const PATHS = {
   users: `/users`,
 
   orders: `/orders`,
+  courses: `/courses`,
   myProfile: `/me`,
 };
