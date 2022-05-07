@@ -41,3 +41,18 @@ export const editCourseAsync = createAsyncAction(
   void,
   Error
 >();
+
+export const deleteCourseAsync = createAsyncAction(
+  `${prefix}/DELETE_COURSE_REQUEST`,
+  `${prefix}/DELETE_COURSE_SUCCESS`,
+  `${prefix}/DELETE_COURSE_FAILURE`,
+)<
+  {
+    payload: {
+      courseUrl: string;
+    };
+    callback: Callback;
+  },
+  void,
+  Error
+>();

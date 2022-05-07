@@ -44,6 +44,8 @@ const CoursesContainer: React.FC<Props> = ({ loading, records, onGetCourses }) =
       count: records?.length,
       onRowClick: handleRowClick,
       searchPlaceholder: 'Search by course name, ID',
+      filter: false,
+      search: false,
       customToolbar: () => (
         <>
           <Tooltip title="Refresh">

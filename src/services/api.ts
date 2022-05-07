@@ -187,7 +187,17 @@ const create = (baseURL = appConfig.API_URL) => {
     try {
       return await dbCourses.doc(params.courseUrl).update(params);
     } catch (error) {
-      console.log('error: ', error);
+      console.error('error: ', error);
+      return error;
+    }
+  };
+
+  const deleteCourse = async (params: any) => {
+    const dbCourses = fireStore.collection(DB_COLLECTION.COURSES);
+    try {
+      return await dbCourses.doc(params.courseUrl).delete();
+    } catch (error) {
+      console.error('error: ', error);
       return error;
     }
   };
@@ -227,6 +237,7 @@ const create = (baseURL = appConfig.API_URL) => {
     getCourse,
     addCourse,
     editCourse,
+    deleteCourse,
     // ====================== END Courses ======================
   };
 };

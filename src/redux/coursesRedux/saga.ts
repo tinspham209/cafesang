@@ -5,7 +5,7 @@ import { Toastify } from 'src/services';
 import { Apis } from 'src/services/api';
 import { toastifyErrorSaga } from '../commonSagas/toastifyFailureSaga';
 import { isEmpty } from './../../validations';
-import { addCourseAsync, editCourseAsync, getCourseDetailAsync, getCoursesAsync } from './actions';
+import { addCourseAsync, deleteCourseAsync, editCourseAsync, getCourseDetailAsync, getCoursesAsync } from './actions';
 import { Course } from './types';
 function* getCourses(api) {
   const response = yield call(api);
@@ -63,11 +63,26 @@ function* editCourse(api, { payload: params }: any) {
   }
 }
 
+function* deleteCourse(api, { payload: params }: any) {
+  const response = yield call(api, params?.payload);
+  try {
+    yield put(deleteCourseAsync.success(response));
+    Toastify.success('Course deleted successfully');
+    if (params?.callback) {
+      params.callback();
+    }
+    yield put(getCoursesAsync.request());
+  } catch (error) {
+    yield all([deleteCourseAsync.failure(error), toastifyErrorSaga(error)]);
+  }
+}
+
 export default function authSaga(apiInstance: Apis) {
   return [
     takeLatest(getCoursesAsync.request, getCourses, apiInstance.getCourses),
     takeLatest(getCourseDetailAsync.request, getCourse, apiInstance.getCourse),
     takeLatest(addCourseAsync.request, addCourse, apiInstance.addCourse),
     takeLatest(editCourseAsync.request, editCourse, apiInstance.editCourse),
+    takeLatest(deleteCourseAsync.request, deleteCourse, apiInstance.deleteCourse),
   ];
 }

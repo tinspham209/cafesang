@@ -5,7 +5,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button, DatePicker, Dialog, Image, TimePicker, View } from 'src/components/common';
 import MuiTextField from 'src/components/MuiTextField';
-import { editCourseAsync } from 'src/redux/coursesRedux/actions';
+import { deleteCourseAsync, editCourseAsync } from 'src/redux/coursesRedux/actions';
 import { Course, CoursesParamKey } from 'src/redux/coursesRedux/types';
 import { IRootState } from 'src/redux/rootReducer';
 import { Callback } from 'src/redux/types';
@@ -15,7 +15,7 @@ import './styles.scss';
 
 const clsPrefix = 'course-detail';
 
-const CourseDetailDialog: React.FC<Props> = ({ loading, onClose, user, course, onEditCourse }) => {
+const CourseDetailDialog: React.FC<Props> = ({ loading, onClose, user, course, onEditCourse, onDeleteCourse }) => {
   const formRef = React.useRef(null);
   const [selectedCourse, setSelectedCourse] = React.useState(initialAddCourseFormValue);
   const [isEdit, setIsEdit] = React.useState(false);
@@ -49,6 +49,17 @@ const CourseDetailDialog: React.FC<Props> = ({ loading, onClose, user, course, o
     formRef?.current?.handleSubmit();
   };
 
+  const handleDeleteCourse = () => {
+    onDeleteCourse({
+      payload: {
+        courseUrl: selectedCourse.courseUrl,
+      },
+      callback: () => {
+        onClose();
+      },
+    });
+  };
+
   return (
     <Dialog
       className={`${clsPrefix}-dialog`}
@@ -60,6 +71,9 @@ const CourseDetailDialog: React.FC<Props> = ({ loading, onClose, user, course, o
       overflowVisible={false}
       dialogActions={
         <>
+          <Button variant="outline" onClick={handleDeleteCourse} className="mr-16" isLoading={loading}>
+            Delete
+          </Button>
           {isEdit ? (
             <Button
               variant="outline"
@@ -281,6 +295,7 @@ const mapStateToProps = (state: IRootState) => ({
 
 const mapDispatchToProps = {
   onEditCourse: editCourseAsync.request,
+  onDeleteCourse: deleteCourseAsync.request,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CourseDetailDialog);

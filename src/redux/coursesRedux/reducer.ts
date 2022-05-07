@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { AsyncState } from 'src/utils/commonAsyncReducer';
 import { createReducer } from 'typesafe-actions';
-import { addCourseAsync, editCourseAsync, getCourseDetailAsync, getCoursesAsync } from './actions';
+import { addCourseAsync, deleteCourseAsync, editCourseAsync, getCourseDetailAsync, getCoursesAsync } from './actions';
 import { Course, Courses } from './types';
 
 export type ICoursesState = Readonly<{
@@ -85,6 +85,20 @@ export const courseReducer = createReducer<AsyncState<Course>>(initialState.deta
     loading: false,
   }))
   .handleAction([editCourseAsync.failure], (state, action) => ({
+    ...state,
+    loading: false,
+    data: null,
+    error: action.payload,
+  }))
+  .handleAction([deleteCourseAsync.request], (state, action) => ({
+    ...state,
+    loading: true,
+  }))
+  .handleAction([deleteCourseAsync.success], (state, action) => ({
+    ...state,
+    loading: false,
+  }))
+  .handleAction([deleteCourseAsync.failure], (state, action) => ({
     ...state,
     loading: false,
     data: null,
