@@ -1,5 +1,5 @@
 import { Location } from 'history';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { connect } from 'react-redux';
 import { Redirect, Route, RouteProps, Switch, useHistory } from 'react-router-dom';
 import { PATHS } from 'src/appConfig/paths';
@@ -10,6 +10,7 @@ import { exchangeTokenAsync, setToken } from 'src/redux/authRedux/actions';
 import { setShowSidebar } from 'src/redux/commonRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
 import { Navigator } from 'src/services';
+import { SpinnerBook } from './CommonContainers';
 import Course from './Course';
 import CoursesContainer from './CoursesContainers';
 import Home from './Home';
@@ -25,24 +26,26 @@ const Routing: React.FC<{ location: Location }> = props => {
   Navigator.setTopHistory(useHistory());
 
   return (
-    <Screen>
-      <Navbar />
-      <Sidebar />
-      <Switch location={props.location}>
-        <Route path={PATHS.signIn} component={Signin} />
-        <Route path={PATHS.root} component={Root} exact />
+    <Suspense fallback={<SpinnerBook />}>
+      <Screen>
+        <Navbar />
+        <Sidebar />
+        <Switch location={props.location}>
+          <Route path={PATHS.signIn} component={Signin} />
+          <Route path={PATHS.root} component={Root} exact />
 
-        <CustomRoute pageRequiredAuth exact path={PATHS.home} component={Home} />
-        <CustomRoute pageRequiredAuth exact path={PATHS.myProfile} component={MyProfile} />
-        <CustomRoute pageRequiredAuth exact path={PATHS.coursesManagement} component={CoursesContainer} />
+          <CustomRoute pageRequiredAuth exact path={PATHS.home} component={Home} />
+          <CustomRoute pageRequiredAuth exact path={PATHS.myProfile} component={MyProfile} />
+          <CustomRoute pageRequiredAuth exact path={PATHS.coursesManagement} component={CoursesContainer} />
 
-        <Route exact path={`${PATHS.courses}/:id`} component={Course} />
+          <Route exact path={`${PATHS.courses}/:id`} component={Course} />
 
-        <Route component={NotFound} />
-      </Switch>
-      <LoadingContainer />
-      <ToastContainer />
-    </Screen>
+          <Route component={NotFound} />
+        </Switch>
+        <LoadingContainer />
+        <ToastContainer />
+      </Screen>
+    </Suspense>
   );
 };
 
