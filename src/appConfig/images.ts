@@ -1,4 +1,5 @@
 import background from 'src/assets/images/background.svg';
+import bgWhite from 'src/assets/images/bg-white.webp';
 import defaultUser from 'src/assets/images/default-user.png';
 import emptyIcon from 'src/assets/images/empty-icon.svg';
 import logoFullWhite from 'src/assets/images/logos/logofull.webp';
@@ -12,4 +13,5 @@ export const IMAGES = {
   defaultUser,
   emptyIcon,
   background,
+  bgWhite,
 };

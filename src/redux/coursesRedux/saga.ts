@@ -27,9 +27,12 @@ function* getCourses(api) {
 }
 
 function* getCourse(api, { payload: params }: any) {
-  const response = yield call(api, params);
+  const response = yield call(api, params?.payload);
   try {
     yield put(getCourseDetailAsync.success(response));
+    if (params?.callback) {
+      params.callback();
+    }
   } catch (error) {
     yield all([getCourseDetailAsync.failure(error), toastifyErrorSaga(error)]);
   }

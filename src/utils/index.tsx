@@ -1,6 +1,7 @@
 import { CancelToken } from 'apisauce';
 import cn from 'classnames';
 import Compressor from 'compressorjs';
+import _ from 'lodash';
 import moment from 'moment';
 import { parse } from 'qs';
 import { formatPhoneNumberIntl } from 'react-phone-number-input';
@@ -256,4 +257,8 @@ export const getErrorMessageSignin = (msg: string) => {
     default:
       return msg;
   }
+};
+
+export const getTitleCase = (str: string): string => {
+  return _.startCase(_.toLower(str));
 };

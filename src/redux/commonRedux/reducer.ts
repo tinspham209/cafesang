@@ -12,7 +12,7 @@ export type ICommonState = Readonly<{
 
 /* ------------- Initial State ------------- */
 const initialState: ICommonState = {
-  showNavbar: false,
+  showNavbar: true,
   showSecondBurger: false,
   showSidebar: false,
   collapseSidebar: false,

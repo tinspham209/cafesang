@@ -14,7 +14,14 @@ export const getCourseDetailAsync = createAsyncAction(
   `${prefix}/GET_COURSE_DETAIL_REQUEST`,
   `${prefix}/GET_COURSE_DETAIL_SUCCESS`,
   `${prefix}/GET_COURSE_DETAIL_FAILURE`,
-)<GetCourseDetailParam, Course, Error>();
+)<
+  {
+    payload: GetCourseDetailParam;
+    callback?: Callback;
+  },
+  Course,
+  Error
+>();
 
 export const addCourseAsync = createAsyncAction(
   `${prefix}/ADD_COURSE_REQUEST`,
@@ -23,7 +30,7 @@ export const addCourseAsync = createAsyncAction(
 )<
   {
     payload: Course;
-    callback: Callback;
+    callback?: Callback;
   },
   Courses,
   Error
@@ -36,7 +43,7 @@ export const editCourseAsync = createAsyncAction(
 )<
   {
     payload: Course;
-    callback: Callback;
+    callback?: Callback;
   },
   void,
   Error
@@ -51,7 +58,7 @@ export const deleteCourseAsync = createAsyncAction(
     payload: {
       courseUrl: string;
     };
-    callback: Callback;
+    callback?: Callback;
   },
   void,
   Error

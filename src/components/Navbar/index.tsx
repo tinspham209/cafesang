@@ -56,7 +56,7 @@ const Navbar: React.FC<Props> = ({ showNavbar, collapseSidebar, onSignOut, user,
       role="navigation"
       aria-label="main navigation">
       <View className="cmp-navbar__container">
-        <Link to={PATHS.home} className={`cmp-navbar__start cursor-pointer`}>
+        <Link to={isAuthenticated ? PATHS.home : PATHS.root} className={`cmp-navbar__start cursor-pointer`}>
           {!isAuthenticated ? (
             <Image src={IMAGES.logoFullWhite} className={`cmp-navbar__img`} />
           ) : (

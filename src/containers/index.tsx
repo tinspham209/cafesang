@@ -10,9 +10,11 @@ import { exchangeTokenAsync, setToken } from 'src/redux/authRedux/actions';
 import { setShowSidebar } from 'src/redux/commonRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
 import { Navigator } from 'src/services';
+import Course from './Course';
 import CoursesContainer from './CoursesContainers';
 import Home from './Home';
 import MyProfile from './ProfileContainers/MyProfile';
+import Root from './Root';
 import LoadingContainer from './StartupContainers/LoadingContainer';
 import NotFound from './StartupContainers/NotFound';
 import SplashScreen from './StartupContainers/SplashScreen';
@@ -27,12 +29,14 @@ const Routing: React.FC<{ location: Location }> = props => {
       <Navbar />
       <Sidebar />
       <Switch location={props.location}>
-        <Route path={PATHS.root} render={() => <Redirect to={PATHS.signIn} />} exact />
         <Route path={PATHS.signIn} component={Signin} />
+        <Route path={PATHS.root} component={Root} exact />
 
         <CustomRoute pageRequiredAuth exact path={PATHS.home} component={Home} />
         <CustomRoute pageRequiredAuth exact path={PATHS.myProfile} component={MyProfile} />
-        <CustomRoute pageRequiredAuth exact path={PATHS.courses} component={CoursesContainer} />
+        <CustomRoute pageRequiredAuth exact path={PATHS.coursesManagement} component={CoursesContainer} />
+
+        <Route exact path={`${PATHS.courses}/:id`} component={Course} />
 
         <Route component={NotFound} />
       </Switch>

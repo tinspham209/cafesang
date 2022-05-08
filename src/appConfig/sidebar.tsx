@@ -22,7 +22,7 @@ export const SidebarMenu: MenuType[] = [
   {
     title: 'Courses Management',
     icon: <AiOutlinePieChart />,
-    href: PATHS.courses,
+    href: PATHS.coursesManagement,
   },
   // {
   //   title: 'Orders Management',

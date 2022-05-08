@@ -4,6 +4,7 @@ import { Menu, MenuItem, ProSidebar, SidebarContent, SidebarFooter, SidebarHeade
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
 import { IMAGES } from 'src/appConfig/images';
+import { PATHS } from 'src/appConfig/paths';
 import { isActive, MenuType, SidebarMenu } from 'src/appConfig/sidebar';
 import { setCollapseSidebar } from 'src/redux/commonRedux/actions';
 import { IRootState } from 'src/redux/rootReducer';
@@ -45,7 +46,9 @@ const Sidebar: React.FC<Props> = ({ showSidebar, collapseSidebar, onCollapSideba
   return (
     <ProSidebar className="cmp-sidebar" collapsed={collapseSidebar}>
       <SidebarHeader className="cmp-sidebar__header">
-        <Image src={showMiniLogo ? IMAGES.logoOnly : IMAGES.logoFullWhite} className="cmp-sidebar__image--header" />
+        <Link to={PATHS.home}>
+          <Image src={showMiniLogo ? IMAGES.logoOnly : IMAGES.logoFullWhite} className="cmp-sidebar__image--header" />
+        </Link>
       </SidebarHeader>
 
       <SidebarContent>

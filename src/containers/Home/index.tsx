@@ -6,6 +6,9 @@ import { IRootState } from 'src/redux/rootReducer';
 import './styles.scss';
 
 const Home: React.FC<Props> = () => {
+  React.useEffect(() => {
+    document.title = `Home - webadmin - cafesang`;
+  }, []);
   return (
     <View flexGrow={1} justify="center" align="center">
       <Image src={IMAGES.background} className="ctn-home__background" />

@@ -8,7 +8,7 @@ import './styles.scss';
 const SplashScreen: React.FC<Props> = () => {
   return (
     <View className="cmp-splash-screen">
-      <Image src={IMAGES.logoFullBlack} className="cmp-splash-screen__image" />
+      <Image src={IMAGES.logoFullWhite} className="cmp-splash-screen__image" />
     </View>
   );
 };

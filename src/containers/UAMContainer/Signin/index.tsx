@@ -56,7 +56,7 @@ const Signin: React.FC<Props> = ({ error, loading, isSigningIn, onSignIn }) => {
   return (
     <div className="ctn-uam">
       <div className="ctn-uam__header">
-        <Image className="ctn-uam__logoImage mb-32" alt="logo" src={IMAGES.logoFullWhite} />
+        <Image className="ctn-uam__logoImage mb-32" alt="logo" src={IMAGES.logoOnly} />
         <Text className="text-is-32 fw-bold mb-32">Welcome</Text>
       </div>
 

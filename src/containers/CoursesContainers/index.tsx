@@ -28,6 +28,10 @@ const CoursesContainer: React.FC<Props> = ({ loading, records, onGetCourses }) =
   const [showCourseDetailDialog, setShowCourseDetailDialog] = React.useState(false);
   const [selectedCourse, setSelectedCourse] = React.useState(null);
 
+  React.useEffect(() => {
+    document.title = `Courses Management - webadmin - cafesang`;
+  }, []);
+
   const handleGetCourses = () => {
     onGetCourses();
   };
