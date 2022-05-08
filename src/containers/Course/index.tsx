@@ -20,6 +20,8 @@ const clsPrefix = 'ctn-course';
 const Course: React.FC<Props> = ({ course, loading, onGetCourseDetail }) => {
   const { id } = useParams<{ id: string }>();
 
+  const [loadingBook, setLoadingBook] = React.useState(true);
+
   React.useEffect(() => {
     if (isEmpty(id)) {
       navigator.navigate(PATHS.root);
@@ -35,13 +37,19 @@ const Course: React.FC<Props> = ({ course, loading, onGetCourseDetail }) => {
   }, []);
 
   React.useEffect(() => {
+    setTimeout(() => {
+      setLoadingBook(false);
+    }, 2500);
+  }, []);
+
+  React.useEffect(() => {
     if (!isEmpty(course)) {
       document.title = `${getTitleCase(course.title)} - cafesang`;
     }
   }, [course]);
 
   // if (true) {
-  if (isEmpty(course) || loading) {
+  if (isEmpty(course) || loading || loadingBook) {
     return (
       <View className={`${clsPrefix} mt-36 full-width`}>
         <SpinnerBook />
