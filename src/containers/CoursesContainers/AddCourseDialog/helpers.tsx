@@ -34,3 +34,34 @@ export const AddCourseFormSchema = Yup.object({
   recordLink: Yup.string().nullable().typeError(ErrorService.MESSAGES.required),
   recordThumbnail: Yup.string().nullable().typeError(ErrorService.MESSAGES.required),
 });
+
+export const TypeOptions = [
+  {
+    value: 'Technical',
+    label: 'Technical',
+  },
+  {
+    value: 'Design',
+    label: 'Design',
+  },
+  {
+    value: 'Software Development',
+    label: 'Software Development',
+  },
+  {
+    value: 'Testing',
+    label: 'Testing',
+  },
+  {
+    value: 'soft skills',
+    label: 'Soft Skills',
+  },
+  {
+    value: 'front end',
+    label: 'Front End',
+  },
+  {
+    value: 'back end',
+    label: 'Back End',
+  },
+];

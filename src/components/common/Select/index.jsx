@@ -1,6 +1,7 @@
 import cn from 'classnames';
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import Select from 'react-select';
+import { COLOR_CODE } from 'src/appConfig/constants';
 import { getRandomId } from 'src/utils';
 import { isEmpty } from 'src/validations';
 import Element from '../Element';
@@ -21,6 +22,9 @@ const SelectCmp = ({
   isClearable = true,
   multi = false,
   disabled = false,
+  isTextfieldStyle = false,
+  readOnly = false,
+  isLoading = false,
   ...props
 }) => {
   const id = useRef(`select-${getRandomId()}`);
@@ -38,7 +42,12 @@ const SelectCmp = ({
   // For custom select, follow this link:
   // https://react-select.com/styles#using-classnames
   return (
-    <Element id={id.current} errorMessage={errorMessage} label={label} className={containerClassName}>
+    <Element
+      id={id.current}
+      errorMessage={errorMessage}
+      label={label}
+      className={containerClassName}
+      isTextfieldStyle={isTextfieldStyle}>
       <View>
         <Select
           id={id.current}
@@ -51,6 +60,7 @@ const SelectCmp = ({
           classNamePrefix="cmp-select"
           menuPlacement="auto"
           onBlur={handleSelectBlur}
+          isSearchable={!readOnly}
           name={name}
           theme={theme => ({
             ...theme,
@@ -60,9 +70,21 @@ const SelectCmp = ({
               neutral20: hasError ? '#c60000' : 'hsl(0, 0%, 80%)',
             },
           })}
+          styles={{
+            option: (styles, { isFocused, isSelected }) => ({
+              ...styles,
+              color: isFocused ? COLOR_CODE.WHITE : isSelected ? COLOR_CODE.WHITE : '#000',
+              backgroundColor: isFocused
+                ? `rgba(240,81,34, 0.5)`
+                : isSelected
+                ? `rgba(240,81,34, 0.7)`
+                : COLOR_CODE.WHITE,
+            }),
+          }}
           {...props}
           isDisabled={disabled}
           isMulti={multi}
+          isLoading={isLoading}
         />
       </View>
     </Element>

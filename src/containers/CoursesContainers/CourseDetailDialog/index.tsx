@@ -3,14 +3,14 @@ import { Form, Formik, FormikProps } from 'formik';
 import moment from 'moment';
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, DatePicker, Dialog, Image, TimePicker, View } from 'src/components/common';
+import { Button, DatePicker, Dialog, Image, Select, TimePicker, View } from 'src/components/common';
 import MuiTextField from 'src/components/MuiTextField';
 import { deleteCourseAsync, editCourseAsync } from 'src/redux/coursesRedux/actions';
 import { Course, CoursesParamKey } from 'src/redux/coursesRedux/types';
 import { IRootState } from 'src/redux/rootReducer';
 import { Callback } from 'src/redux/types';
 import { isEmpty } from 'src/validations';
-import { AddCourseFormSchema, initialAddCourseFormValue } from '../AddCourseDialog/helpers';
+import { AddCourseFormSchema, initialAddCourseFormValue, TypeOptions } from '../AddCourseDialog/helpers';
 import './styles.scss';
 
 const clsPrefix = 'course-detail';
@@ -157,16 +157,18 @@ const CourseDetailDialog: React.FC<Props> = ({ loading, onClose, user, course, o
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <MuiTextField
-                      label={`Type`}
-                      errorMessage={touched.type && errors.type ? errors.type : ''}
-                      placeholder="Enter course type"
-                      fullWidth
-                      required
-                      InputProps={{
-                        readOnly: !isEdit,
+                    <Select
+                      name={CoursesParamKey.TYPE}
+                      value={values.type}
+                      label="Type *"
+                      isTextfieldStyle={true}
+                      options={TypeOptions}
+                      onChange={(name, value) => {
+                        setFieldValue(name, value);
                       }}
-                      {...getFieldProps(CoursesParamKey.TYPE)}
+                      disabled={!isEdit}
+                      readOnly={!isEdit}
+                      errorMessage={touched.type && errors.type ? (errors.type as string) : ''}
                     />
                   </Grid>
                   <Grid item xs={12}>
